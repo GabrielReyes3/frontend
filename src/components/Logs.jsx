@@ -20,8 +20,8 @@ const Logs = () => {
     useEffect(() => {
         // URL para el servidor 1 y servidor 2
         const serverUrl = selectedServer === "servidor1" 
-            ? 'http://localhost:3001/api/auth/logs' 
-            : 'http://localhost:3002/api/auth/logs';  // Cambiar la URL de la API del servidor 2 si es necesario
+            ? 'https://server1-rate-limit-xrz4.onrender.com/api/auth/logs' 
+            : 'https://server2-no-rate-limit.onrender.com/api/auth/logs';  // Cambiar la URL de la API del servidor 2 si es necesario
 
         api.get(serverUrl)
             .then(response => setLogsData(response.data))

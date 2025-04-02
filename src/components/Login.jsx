@@ -27,6 +27,8 @@ const Login = () => {
                 useMFA,  // Indicar si se usará MFA
             };
 
+            console.log("solicitud", loginData);
+
             const response = await api.post("/login", loginData);
 
             // Guardar el token JWT y la información del usuario en el contexto
