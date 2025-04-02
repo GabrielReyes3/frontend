@@ -16,16 +16,26 @@ const Logs = () => {
 
     const [logsData, setLogsData] = useState([]);
     const [selectedServer, setSelectedServer] = useState("servidor1");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // URL para el servidor 1 y servidor 2
-        const serverUrl = selectedServer === "servidor1" 
-            ? 'https://server1-rate-limit-xrz4.onrender.com/api/auth/logs' 
-            : 'https://server2-no-rate-limit.onrender.com/api/auth/logs';  // Cambiar la URL de la API del servidor 2 si es necesario
+        const serverUrl = selectedServer === "servidor1"
+            ? 'https://server1-rate-limit-xrz4.onrender.com/api/auth/logs'
+            : 'https://server2-no-rate-limit.onrender.com/api/auth/logs';
+
+        setLoading(true);
+        setError(null); // Limpiar cualquier error previo
 
         api.get(serverUrl)
-            .then(response => setLogsData(response.data))
-            .catch(error => console.error(error));
+            .then(response => {
+                setLogsData(response.data);
+                setLoading(false);
+            })
+            .catch(error => {
+                setError("Error al cargar los datos.");
+                setLoading(false);
+            });
     }, [selectedServer]);
 
     const httpMethodsData = [
@@ -45,7 +55,6 @@ const Logs = () => {
         { name: 'Failed', count: logsData.filter(log => log.status !== 200 && log.status !== 204).length }
     ];
 
-    // Cambiar de servidor y redirigir a la página de logs
     const handleServerChange = (e) => {
         setSelectedServer(e.target.value);
         navigate("/logs");  // Redirigir a /logs
@@ -71,57 +80,66 @@ const Logs = () => {
                 <select
                     id="server-select"
                     value={selectedServer}
-                    onChange={handleServerChange}  // Usar la nueva función
+                    onChange={handleServerChange}
                 >
                     <option value="servidor1">Servidor 1 - Rate Limit</option>
                     <option value="servidor2">Servidor 2 - Sin Rate Limit</option>
                 </select>
             </div>
 
-            <div className="graph-container">
-                <h3>Métodos HTTP Utilizados</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={httpMethodsData}>
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
-                            wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                            cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
-                        <Legend />
-                        <Bar dataKey="count" fill="rgba(75, 192, 192, 0.5)" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+            {/* Cargando o error */}
+            {loading && <p>Cargando datos...</p>}
+            {error && <p>{error}</p>}
 
-            <div className="graph-container">
-                <h3>Niveles de Log</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={logLevelsData}>
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
-                            wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                            cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
-                        <Legend />
-                        <Bar dataKey="count" fill="rgba(255, 99, 132, 0.5)" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+            {/* Gráficas */}
+            {!loading && !error && (
+                <>
+                    <div className="graph-container">
+                        <h3>Métodos HTTP Utilizados</h3>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <BarChart data={httpMethodsData}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
+                                    wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                                    cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
+                                <Legend />
+                                <Bar dataKey="count" fill="rgba(75, 192, 192, 0.5)" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
 
-            <div className="graph-container">
-                <h3>Respuestas por Status</h3>
-                <ResponsiveContainer width="100%" height={400}>
-                    <BarChart data={statusResponsesData}>
-                        <XAxis dataKey="name" />
-                        <YAxis />
-                        <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
-                            wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
-                            cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
-                        <Legend />
-                        <Bar dataKey="count" fill="rgba(153, 102, 255, 0.5)" />
-                    </BarChart>
-                </ResponsiveContainer>
-            </div>
+                    <div className="graph-container">
+                        <h3>Niveles de Log</h3>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <BarChart data={logLevelsData}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
+                                    wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                                    cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
+                                <Legend />
+                                <Bar dataKey="count" fill="rgba(255, 99, 132, 0.5)" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+
+                    <div className="graph-container">
+                        <h3>Respuestas por Status</h3>
+                        <ResponsiveContainer width="100%" height={400}>
+                            <BarChart data={statusResponsesData}>
+                                <XAxis dataKey="name" />
+                                <YAxis />
+                                <Tooltip contentStyle={{ backgroundColor: 'rgba(0, 0, 0, 0.8)', color: '#fff' }} 
+                                    wrapperStyle={{ backgroundColor: 'transparent', border: 'none' }}
+                                    cursor={{ fill: 'rgba(0, 0, 0, 0.3)' }} />
+                                <Legend />
+                                <Bar dataKey="count" fill="rgba(153, 102, 255, 0.5)" />
+                            </BarChart>
+                        </ResponsiveContainer>
+                    </div>
+                </>
+            )}
         </div>
     );
 };
