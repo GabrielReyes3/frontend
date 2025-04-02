@@ -1,0 +1,119 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0a0a0a;
+    color: white;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: black;
+    color: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.nav-links li {
+    display: inline;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #f39c12;
+}
+
+/* Botón de cerrar sesión */
+.logout-btn {
+    background-color: #e74c3c;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.logoimg{
+    width: 60px;
+    height: 60px;
+}
+
+.logout-btn:hover {
+    background-color: #c0392b;
+}
+
+/* Sección de bienvenida */
+.welcome-section {
+    text-align: center;
+    margin-top: 100px;
+    padding: 2rem;
+}
+
+.welcome-section h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.welcome-section p {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+.images-container {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 30px;
+  }
+  
+  .image {
+    width: 250px;
+    height: 250px;
+    border-radius: 10px;
+    object-fit: cover;
+    transition: transform 0.3s ease-in-out; /* Suaviza la transformación */
+  }
+  
+  /* Efecto de animación sutil (saltando o creciendo) */
+  .image {
+    animation: jump 2s ease-in-out infinite; /* Define el ciclo de la animación */
+  }
+  
+  @keyframes jump {
+    0%, 100% {
+      transform: translateY(0) scale(1); /* Inicialmente en su tamaño normal */
+    }
+    50% {
+      transform: translateY(-10px) scale(1.05); /* Salto y un pequeño aumento de tamaño */
+    }
+
+    
+}

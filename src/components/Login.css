@@ -1,0 +1,127 @@
+/* Login.css */
+
+/* Aplicamos los estilos solo dentro de .login-page */
+.login-page {
+    background-color: #121212; /* Fondo oscuro */
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Asegura que ocupe toda la pantalla */
+    width: 100vw; /* Asegura que ocupa todo el ancho */
+    color: #e0e0e0; /* Color de texto general en gris claro */
+}
+
+
+.login-page .login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    margin: 0 20px;
+}
+
+.login-page h2 {
+    font-size: 2rem;
+    color: #ffffff;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.login-page .error-message {
+    color: #ff4d4d;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.login-page .login-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.login-page .input-field {
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #333333;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #333333;
+    color: #e0e0e0;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.login-page .input-field::placeholder {
+    color: #aaa;
+}
+
+.login-page .input-field:focus {
+    border-color: #3b82f6;
+    background-color: #444444;
+    outline: none;
+}
+
+.login-page .submit-button {
+    background-color: #3b82f6;
+    color: white;
+    padding: 14px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-page .submit-button:hover {
+    background-color: #2563eb;
+}
+
+.login-page .register-link {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.login-page .register-link a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.login-page .register-link a:hover {
+    text-decoration: underline;
+}
+
+.login-page .password-container {
+    position: relative;
+}
+
+.login-page .eye-icon {
+    position: absolute;
+    right: 2px;
+    top: 38%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    cursor: pointer;
+    outline: none;
+    box-shadow: none;
+}
+
+.login-page .eye-icon:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.login-page .mfa-switch {
+    padding: 12px;
+}
+

@@ -1,0 +1,42 @@
+/* Estilos generales de la navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #1f2937; /* bg-gray-800 */
+    color: white;
+}
+
+/* Contenedor de enlaces */
+.nav-links {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* Estilos de los enlaces */
+.nav-links a {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: white;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: #facc15; /* Un amarillo para destacar */
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+    .nav-links {
+        margin-top: 1rem;
+        flex-direction: column;
+        gap: 1rem;
+    }
+}
