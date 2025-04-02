@@ -28,8 +28,8 @@ const Home = () => {
       {/* Contenido principal */}
       <div className="welcome-section">
         <h1>Bienvenido</h1>
-        <p>Alumno: TSU. Reyes Vargas José Gabriel.</p>
-        <p>Docente: Ing. Martínez Hernández Emmanuel.</p>
+        <p>Alumno: T.S.U. Reyes Vargas José Gabriel.</p>
+        <p>Docente: M.C.C. Martínez Hernández Emmanuel.</p>
         <p>Grupo: IDGS11</p>
         <p>Materia: Seguridad en el Desarrollo de Aplicaciones.</p>
         <br />
