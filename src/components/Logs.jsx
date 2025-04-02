@@ -32,7 +32,7 @@ const Logs = () => {
                 setLogsData(response.data);
                 setLoading(false);
             })
-            .catch(error => {
+            .catch(() => {
                 setError("Error al cargar los datos.");
                 setLoading(false);
             });
@@ -49,10 +49,16 @@ const Logs = () => {
         { name: 'Error', count: logsData.filter(log => log.logLevel === "error").length }
     ];
 
+    // Más códigos de estado HTTP
     const statusResponsesData = [
         { name: '200', count: logsData.filter(log => log.status === 200).length },
         { name: '204', count: logsData.filter(log => log.status === 204).length },
-        { name: 'Failed', count: logsData.filter(log => log.status !== 200 && log.status !== 204).length }
+        { name: '400', count: logsData.filter(log => log.status === 400).length },
+        { name: '401', count: logsData.filter(log => log.status === 401).length },
+        { name: '403', count: logsData.filter(log => log.status === 403).length },
+        { name: '404', count: logsData.filter(log => log.status === 404).length },
+        { name: '500', count: logsData.filter(log => log.status === 500).length },
+        { name: 'Failed', count: logsData.filter(log => log.status !== 200 && log.status !== 204 && log.status !== 400 && log.status !== 401 && log.status !== 403 && log.status !== 404 && log.status !== 500).length }
     ];
 
     const handleServerChange = (e) => {
